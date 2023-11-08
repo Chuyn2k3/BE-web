@@ -8,13 +8,15 @@ let handleUserLogin=(email,password)=>{
             let isExist = await checkUserEmail(email);
             if(isExist){
                  let user= await db.User.findOne({
-                    attributes:['email','role','password'],
+                    //attributes:['email','role','password'],
                     where: {email: email},
                     raw:true
                  });
                  if(user){
-                      let check= await bcrypt.compareSync(password,user.password);
-                      if(check){
+                      let check=  await bcrypt.compareSync(password, user.password);
+                      let check1=  password===user.password;
+                      console.log(check)
+                      if(check||check1){
                         userData.errCode=0;
                         userData.errMessage='ok';
                         delete user.password;
@@ -108,6 +110,7 @@ let createNewUser=(data)=>{
                     message:"email was used,please use another email"
                 })
             }
+            if(check !==true){
             let hashPasswordFromBcrypt=await hashUserPassword(data.password);
             await db.User.create({
                 firstName: data.firstName,
@@ -118,10 +121,11 @@ let createNewUser=(data)=>{
     isActive: data.isActive,
     password: hashPasswordFromBcrypt,
     deleteAt: data.deleteAt,
-            })
+            });
         resolve({
             errCode:0,
             message:'OK'})
+        }
            }
            catch(e){
             reject(e);
