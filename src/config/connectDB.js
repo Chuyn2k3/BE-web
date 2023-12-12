@@ -7,6 +7,9 @@ const sequelize = new Sequelize('beweb', 'root', null, {
   // 'mysql', 'mariadb', 'postgres', 'mssql', 'sqlite', 'snowflake', 'db2' or 'ibmi'
   dialect: 'mysql',
   logging: false,
+  define: {
+    timestamps: false
+}  
 });
 
 let connectDB=async()=>{

@@ -2,18 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('team', {
+    await queryInterface.createTable('schedule', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      description: {
-        type: Sequelize.TEXT
+      currentNumber: {
+        type: Sequelize.INTEGER
       },
-      isActive: {
-        type: Sequelize.BOOLEAN
+      maxNumber: {
+        type: Sequelize.INTEGER
+      },
+      teamId: {
+        type: Sequelize.INTEGER
+      },
+      date: {
+        type: Sequelize.DATE
+      },
+      timeType: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -23,14 +32,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      deleteAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    },
-    );
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('team');
+    await queryInterface.dropTable('schedule');
   }
 };

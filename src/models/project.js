@@ -12,18 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  }
+  }  
   Project.init({
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    income: DataTypes.STRING,
-    status: DataTypes.STRING,
+    income: DataTypes.FLOAT,
+    status: DataTypes.BOOLEAN,
     startTime: DataTypes.DATE,
     endTime: DataTypes.DATE,
-    password: DataTypes.STRING,
-    createAt: DataTypes.STRING,
-    updateAt: DataTypes.STRING,
-    deleteAt: DataTypes.STRING,
+    deletedAt: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Project',

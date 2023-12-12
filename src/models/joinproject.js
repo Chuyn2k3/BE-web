@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  }
+  } 
   JoinProject.init({
     idUser: DataTypes.INTEGER,
     idProject: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'JoinProject',
-  });
+  }); 
   return JoinProject;
 };

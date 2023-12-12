@@ -19,7 +19,14 @@ let handleLogin=async(req,res)=>{
 }
 
 let handleGetAllUsers= async(req,res)=>{
-    let id=req.body.id;
+    let id=req.query.id;
+    if(!id){
+      return res.status(200).json({
+        errCode:1,
+        errMessage:'Missing requires parameters',
+        users:[]
+    })
+    }
     let users =await userService.getAllUser(id);
     console.log(users)
     return res.status(200).json({
@@ -36,7 +43,7 @@ let handleCreateNewUser=async(req,res)=>{
 } 
 let handleDeleteUser=async(req,res)=>{
     if(!req.body.id){
-      return res.status(200).json({
+      return res.status(200).json({ 
           errCode:1,
           errMessage:"Missing requires parameters"
       })
